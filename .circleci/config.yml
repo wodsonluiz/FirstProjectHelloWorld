@@ -1,0 +1,13 @@
+ version: 2.1
+
+ orbs:
+  win: circleci/windows@2.2.0
+
+ jobs:
+   build:
+     description: Build application with Release configure
+     executor: win/default     
+    
+     steps:
+       - checkout
+       - run: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj
