@@ -1,13 +1,17 @@
- version: 2.1
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.1
 
- orbs:
-  win: circleci/windows@2.2.0
+    working_directory: /tmp
+    steps:
+      - checkout
+      - run: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj
 
- jobs:
-   build:
-     description: Build application with Release configure
-     executor: win/default     
-    
-     steps:
-       - checkout
-       - run: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj
+      - store_artifacts:
+          path: /tmp/artifact-1
+          destination: artifact-file
+
+      - store_artifacts:
+          path: /tmp/artifacts
