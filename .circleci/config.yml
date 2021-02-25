@@ -20,5 +20,5 @@ jobs:
 
       - store_artifacts:
           path: output/FirstProjectHelloWorld
-          destination: circleci-docs
+          destination: circleci-docs/FirstProjectHelloWorld
 
