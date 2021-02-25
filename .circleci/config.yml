@@ -16,9 +16,9 @@ jobs:
 
       - run:
           name: "Deploy Application"
-          command: dotnet publish FirstProjectHelloWorld.csproj
+          command: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj
 
       - store_artifacts:
           path: output/FirstProjectHelloWorld
-          destination: circleci-docs
+          destination: FirstProjectHelloWorld
 
