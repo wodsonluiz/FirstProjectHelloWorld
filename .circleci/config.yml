@@ -10,7 +10,6 @@ jobs:
       size: "medium"
     steps:
       - run: 
-          shell: /bin/sh
           name: "Build Application"
           command: dotnet.exe build --configuration Release
       - run:
