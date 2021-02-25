@@ -9,12 +9,15 @@ jobs:
       name: win/default
       size: "medium"
     steps:
+      - checkout
       - run: 
           name: "Build Application"
           command: dotnet.exe build --configuration Release
+
       - run:
           name: "Deploy Application"
           command: dotnet publish -c Release --no-restore -o --destination FirstProjectHelloWorld.csproj
+          
       - store_artifacts:
           path: jekyll/_site/docs/
           destination: circleci-docs
