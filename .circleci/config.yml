@@ -16,9 +16,9 @@ jobs:
 
       - run:
           name: "Deploy Application"
-          command: dotnet publish -c Release --no-restore -o --destination FirstProjectHelloWorld.csproj
-          
+          command: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj
+
       - store_artifacts:
-          path: jekyll/_site/docs/
+          path: output/FirstProjectHelloWorld
           destination: circleci-docs
 
