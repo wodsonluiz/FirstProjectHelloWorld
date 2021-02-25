@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   build:
+          
     description: Build application with Release configuration
     executor:
       name: windows/default
@@ -15,13 +16,8 @@ jobs:
           command: dotnet.exe build --configuration Release
       - run:
           name: "deploy"
-          command: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj 
+          command: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj
 
-    docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:3.1
-
-    working_directory: /tmp
-      steps:
       - run:
           name: Creating Dummy Artifacts
           command: |
