@@ -1,34 +1,22 @@
 version: 2.1
 
 orbs:
-  windows: circleci/windows@2.2.0
+  win: circleci/windows@2.3.0
 
 jobs:
   build:
-          
-    description: Build application with Release configuration
     executor:
-      name: windows/default
+      name: win/default
+      size: "medium"
     steps:
-      - checkout
-      - run:
-          name: "Build Application according to some given configuration"
+      - run: 
+          shell: /bin/sh
+          name: "Build Application"
           command: dotnet.exe build --configuration Release
-      
       - run:
-          name: Creating Dummy Artifacts
-          command: |
-            echo "my artifact file" > /tmp/artifact-1;
-            mkdir /tmp/artifacts;
-            echo "my artifact files in a dir" > /tmp/artifacts/artifact-2;
-
+          name: "Deploy Application"
+          command: dotnet publish -c Release --no-restore -o --destination FirstProjectHelloWorld.csproj
       - store_artifacts:
-          path: /tmp/artifact-1
-          destination: artifact-file
+          path: jekyll/_site/docs/
+          destination: circleci-docs
 
-      - store_artifacts:
-          path: /tmp/artifacts
-      
-      - run:
-          name: "deploy"
-          command: dotnet publish -c Release --no-restore -o /tmp/artifacts FirstProjectHelloWorld.csproj
