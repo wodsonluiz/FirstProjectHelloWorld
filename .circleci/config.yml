@@ -1,0 +1,16 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+jobs:
+  build:
+    executor:
+      name: win/default
+    steps:
+      # default shell is Powershell
+      - run:            
+         command: dotnet publish -c Release --no-restore -o output/FirstProjectHelloWorld FirstProjectHelloWorld.csproj
+         shell: powershell.exe
+      - store_artifacts:
+          path: /tmp/artifacts
